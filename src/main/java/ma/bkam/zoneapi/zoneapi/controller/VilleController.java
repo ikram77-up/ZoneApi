@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import ma.bkam.zoneapi.zoneapi.common.config.swagger.SwaggerDocConst;
 import ma.bkam.zoneapi.zoneapi.common.dto.SimpleMessageResponseModel;
 import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
-import ma.bkam.zoneapi.zoneapi.common.dto.ZoneDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
 import ma.bkam.zoneapi.zoneapi.service.VilleService;
@@ -38,8 +37,7 @@ public class VilleController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VilleDTO> create(
             @RequestBody VilleDTO ville) {
-        var x=service.add(ville);
-        System.out.println(x);
+        service.add(ville);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ville);
     }
