@@ -1,14 +1,14 @@
 package ma.bkam.zoneapi.zoneapi.controller;
 
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.bkam.zoneapi.zoneapi.common.config.swagger.SwaggerDocConst;
+import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
 import ma.bkam.zoneapi.zoneapi.common.dto.SimpleMessageResponseModel;
-import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
-import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
-import ma.bkam.zoneapi.zoneapi.service.VilleService;
+import ma.bkam.zoneapi.zoneapi.service.NaturePrestationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +19,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@Api(tags = { SwaggerDocConst.VILLE_CONTROLLER_TAG})
-@RequestMapping("/ville")
-public class VilleController {
+@Api(tags = { SwaggerDocConst.NATURE_PRESTATION_CONTROLLER_TAG})
+@RequestMapping("/naturePrestation")
+public class NaturePrestationController {
 
 
-    public final VilleService service;
+    public final NaturePrestationService service;
 
 
-    public VilleController(VilleService service) {
+    public NaturePrestationController(NaturePrestationService service) {
         this.service = service;
     }
 
@@ -36,11 +36,11 @@ public class VilleController {
     @PostMapping(value = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VilleDTO> create(
-            @RequestBody VilleDTO ville) {
-        service.add(ville);
+    public ResponseEntity<NaturePrestationDTO> create(
+            @RequestBody NaturePrestationDTO prestation) {
+      NaturePrestationDTO pres=  service.add(prestation);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ville);
+                .body(pres);
     }
 
 
@@ -54,7 +54,7 @@ public class VilleController {
         SimpleMessageResponseModel deletedsubthemeMsg = new SimpleMessageResponseModel();
 
         if (deleted) {
-            deletedsubthemeMsg.setMessage(MessagesCodes.DELETED_VILLE_MESSAGE);
+            deletedsubthemeMsg.setMessage(MessagesCodes.DELETED_MESSAGE);
         }
 
 
@@ -64,10 +64,9 @@ public class VilleController {
 
     @ApiOperation(SwaggerDocConst.GET)
     @GetMapping(value ="/getbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public ResponseEntity<Optional<VilleDTO>> getByID(
+    public ResponseEntity<Optional<NaturePrestationDTO>> getByID(
             @PathVariable long id) {
-        Optional<VilleDTO> result = service.getByID(id);
+        Optional<NaturePrestationDTO> result = service.getByID(id);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(result);
@@ -75,9 +74,9 @@ public class VilleController {
 
     @ApiOperation(SwaggerDocConst.LIST)
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<VilleDTO>> getAll() {
+    public ResponseEntity<List<NaturePrestationDTO>> getAll() {
 
-        List<VilleDTO> response = service.getAll();
+        List<NaturePrestationDTO> response = service.getAll();
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -89,19 +88,21 @@ public class VilleController {
             value = "/update",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VilleDTO> update(
-            @RequestBody VilleDTO villeDTO) {
+    public ResponseEntity<NaturePrestationDTO> update(
+            @RequestBody NaturePrestationDTO prestation) {
 
 
-        if (Objects.isNull(villeDTO.getId())) {
+        if (Objects.isNull(prestation.getId())) {
             throw Utilities.raiseError(MessagesCodes.ID_REQUIRED);
         }
 
-        VilleDTO newDto = service.update(villeDTO);
+        NaturePrestationDTO newDto = service.update(prestation);
 
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(newDto);
     }
+
+
 
 }

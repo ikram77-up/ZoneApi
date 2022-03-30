@@ -49,7 +49,7 @@ public class VilleEntity extends GenericEntity{
 
     @Override
     public VilleDTO convertToDto() {
-        var ville=new VilleDTO();
+        VilleDTO ville=new VilleDTO();
         ville.setId(this.id);
         ville.setAbrev(this.abrev);
         ville.setLibelle(this.libelle);

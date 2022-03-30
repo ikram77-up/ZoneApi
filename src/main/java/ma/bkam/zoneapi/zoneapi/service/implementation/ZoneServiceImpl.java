@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 @Service
 @Transactional
@@ -32,18 +31,18 @@ public class ZoneServiceImpl implements ZoneService {
     @Override
     public List<ZoneDTO> getAll() {
 
-        var villes=new ArrayList<ZoneDTO>();
+        List<ZoneDTO> zones =new ArrayList<ZoneDTO>();
 
        repository.findAll().forEach(villeEntity -> {
-            villes.add(villeEntity.convertToDto());
+            zones.add(villeEntity.convertToDto());
         });
-        return villes;
+        return zones;
     }
 
     @Override
     public ZoneDTO update(ZoneDTO zone) {
         if(zone!=null && zone.getVilles()!=null) {
-            var id = zone.getId();
+            long id = zone.getId();
             Optional<ZoneEntity> theExisted = repository.findById(id);
             if(theExisted.isPresent()) {
                 theExisted.get().setId(zone.getId());

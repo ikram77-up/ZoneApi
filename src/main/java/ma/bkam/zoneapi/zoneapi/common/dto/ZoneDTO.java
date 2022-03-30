@@ -40,7 +40,7 @@ public class ZoneDTO extends GenericDTO {
     }
 
     public ZoneEntity convertToEntity() {
-        var zone= new ZoneEntity();
+        ZoneEntity zone= new ZoneEntity();
         zone.setId(this.id);
         zone.setAbrev(this.abrev);
         zone.setLibelle(this.libelle);

@@ -30,7 +30,7 @@ public class VilleDTO extends GenericDTO{
 
     @Override
     public VilleEntity convertToEntity() {
-        var ville=new VilleEntity();
+        VilleEntity ville=new VilleEntity();
         ville.setId(this.id);
         ville.setAbrev(this.abrev);
         ville.setLibelle(this.libelle);

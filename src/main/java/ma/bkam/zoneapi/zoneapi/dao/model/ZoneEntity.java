@@ -69,7 +69,7 @@ public class ZoneEntity extends GenericEntity{
 
     @Override
     public ZoneDTO convertToDto() {
-       var zone=new ZoneDTO();
+        ZoneDTO zone=new ZoneDTO();
        zone.setId(this.id);
        zone.setAbrev(this.abrev);
        zone.setLibelle(this.libelle);

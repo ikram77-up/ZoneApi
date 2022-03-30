@@ -1,14 +1,14 @@
 package ma.bkam.zoneapi.zoneapi.controller;
 
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.bkam.zoneapi.zoneapi.common.config.swagger.SwaggerDocConst;
+import ma.bkam.zoneapi.zoneapi.common.dto.PrestatireDTO;
 import ma.bkam.zoneapi.zoneapi.common.dto.SimpleMessageResponseModel;
-import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
-import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
-import ma.bkam.zoneapi.zoneapi.service.VilleService;
+import ma.bkam.zoneapi.zoneapi.service.PrestatireService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +19,16 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@Api(tags = { SwaggerDocConst.VILLE_CONTROLLER_TAG})
-@RequestMapping("/ville")
-public class VilleController {
+@Api(tags = { SwaggerDocConst.PRESTATIRE_CONTROLLER_TAG})
+@RequestMapping("/prestataire")
+public class PrestataireController {
+
+    public final PrestatireService service;
 
 
-    public final VilleService service;
 
 
-    public VilleController(VilleService service) {
+    public PrestataireController(PrestatireService service) {
         this.service = service;
     }
 
@@ -36,11 +37,11 @@ public class VilleController {
     @PostMapping(value = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VilleDTO> create(
-            @RequestBody VilleDTO ville) {
-        service.add(ville);
+    public ResponseEntity<PrestatireDTO> create(
+            @RequestBody PrestatireDTO prestatire) {
+        PrestatireDTO pres=  service.add(prestatire);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ville);
+                .body(pres);
     }
 
 
@@ -54,7 +55,7 @@ public class VilleController {
         SimpleMessageResponseModel deletedsubthemeMsg = new SimpleMessageResponseModel();
 
         if (deleted) {
-            deletedsubthemeMsg.setMessage(MessagesCodes.DELETED_VILLE_MESSAGE);
+            deletedsubthemeMsg.setMessage(MessagesCodes.DELETED_MESSAGE);
         }
 
 
@@ -64,10 +65,9 @@ public class VilleController {
 
     @ApiOperation(SwaggerDocConst.GET)
     @GetMapping(value ="/getbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public ResponseEntity<Optional<VilleDTO>> getByID(
+    public ResponseEntity<Optional<PrestatireDTO>> getByID(
             @PathVariable long id) {
-        Optional<VilleDTO> result = service.getByID(id);
+        Optional<PrestatireDTO> result = service.getByID(id);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(result);
@@ -75,9 +75,9 @@ public class VilleController {
 
     @ApiOperation(SwaggerDocConst.LIST)
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<VilleDTO>> getAll() {
+    public ResponseEntity<List<PrestatireDTO>> getAll() {
 
-        List<VilleDTO> response = service.getAll();
+        List<PrestatireDTO> response = service.getAll();
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -89,19 +89,18 @@ public class VilleController {
             value = "/update",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VilleDTO> update(
-            @RequestBody VilleDTO villeDTO) {
+    public ResponseEntity<PrestatireDTO> update(
+            @RequestBody PrestatireDTO prestataire) {
 
 
-        if (Objects.isNull(villeDTO.getId())) {
+        if (Objects.isNull(prestataire.getId())) {
             throw Utilities.raiseError(MessagesCodes.ID_REQUIRED);
         }
 
-        VilleDTO newDto = service.update(villeDTO);
+        PrestatireDTO newDto = service.update(prestataire);
 
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(newDto);
     }
-
 }

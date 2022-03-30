@@ -35,9 +35,9 @@ public class ZoneController {
             value = "/add")
     public ResponseEntity<ZoneDTO> create(
             @RequestBody ZoneDTO zone) {
-        var x = service.add(zone);
+        ZoneDTO x = service.add(zone);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(zone);
+                .body(x);
     }
 
 
@@ -48,7 +48,7 @@ public class ZoneController {
 
         boolean deleted = service.deleteById(Optional.of(Long.valueOf(id)));
 
-        var deletedsubthemeMsg = new SimpleMessageResponseModel();
+        SimpleMessageResponseModel deletedsubthemeMsg = new SimpleMessageResponseModel();
 
         if (deleted) {
             deletedsubthemeMsg.setMessage(MessagesCodes.DELETED_VILLE_MESSAGE);
@@ -64,7 +64,7 @@ public class ZoneController {
 
     public ResponseEntity<Optional<ZoneDTO>> getByID(
             @PathVariable long id) {
-        var result = service.getByID(id);
+        Optional<ZoneDTO> result = service.getByID(id);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(result);
@@ -74,7 +74,7 @@ public class ZoneController {
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ZoneDTO>> getAll() {
 
-        var response = service.getAll();
+        List<ZoneDTO> response = service.getAll();
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -94,7 +94,7 @@ public class ZoneController {
             throw Utilities.raiseError(MessagesCodes.ID_REQUIRED);
         }
 
-        var newDto = service.update(zoneDto);
+        ZoneDTO newDto = service.update(zoneDto);
 
 
         return ResponseEntity.status(HttpStatus.OK)

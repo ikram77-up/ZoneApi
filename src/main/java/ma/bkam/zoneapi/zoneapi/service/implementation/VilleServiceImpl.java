@@ -33,7 +33,7 @@ public class VilleServiceImpl implements VilleService {
     @Override
     public List<VilleDTO> getAll() {
 
-        var villes=new ArrayList<VilleDTO>();
+        List<VilleDTO> villes=new ArrayList<VilleDTO>();
 
         villeRepository.findAll().forEach(villeEntity -> {
             villes.add(villeEntity.convertToDto());
@@ -44,7 +44,7 @@ public class VilleServiceImpl implements VilleService {
     @Override
     public VilleDTO update(VilleDTO ville) {
         if(ville !=null) {
-            var id = ville.getId();
+            long id = ville.getId();
             Optional<VilleEntity> theExisted = villeRepository.findById(id);
             if(theExisted.isPresent()) {
                 theExisted.get().setId(ville.getId());

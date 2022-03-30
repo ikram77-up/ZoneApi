@@ -6,6 +6,8 @@ public class SwaggerDocConst {
 
     public static final String VILLE_CONTROLLER_TAG = "Ville controller";
     public static final String ZONE_CONTROLLER_TAG = "Zone controller";
+    public static final String NATURE_PRESTATION_CONTROLLER_TAG = "Nature de prestation controller";
+    public static final String PRESTATIRE_CONTROLLER_TAG = "Prestataire  controller";
 
     public static final String CREATE = "CREATE ";
     public static final String DELETE = "DELETE ";

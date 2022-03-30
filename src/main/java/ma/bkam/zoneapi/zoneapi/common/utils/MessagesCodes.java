@@ -9,6 +9,7 @@ public class MessagesCodes {
     public static final String NOT_FOUND = "  Not found";
     public static final String INVALID_IDENTIFIER = "bo_path_001";
     public static final String DELETED_VILLE_MESSAGE = "ville deleted";
+    public static final String DELETED_MESSAGE = " deleted";
 
 
 
