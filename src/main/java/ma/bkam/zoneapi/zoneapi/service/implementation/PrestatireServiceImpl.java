@@ -1,7 +1,6 @@
 package ma.bkam.zoneapi.zoneapi.service.implementation;
 
 
-import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
 import ma.bkam.zoneapi.zoneapi.common.dto.PrestatireDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
@@ -35,11 +34,11 @@ public class PrestatireServiceImpl   implements PrestatireService {
 
     @Override
     public List<PrestatireDTO> getAll() {
-        List<PrestatireDTO> prestatire=new ArrayList<PrestatireDTO>();
+        List<PrestatireDTO> prestatire=new ArrayList<>();
 
-        repository.findAll().forEach(villeEntity -> {
-            prestatire.add(villeEntity.convertToDto());
-        });
+        repository.findAll().forEach(villeEntity ->
+            prestatire.add(villeEntity.convertToDto())
+        );
         return prestatire;
     }
 
@@ -62,7 +61,7 @@ public class PrestatireServiceImpl   implements PrestatireService {
 
     @Override
     public Boolean deleteById(Optional<Long> id) {
-        Optional<PrestataireEntity> theExisted = Optional.empty();
+        Optional<PrestataireEntity> theExisted;
         if (id.isPresent()) {
             theExisted = repository.findById(id.get());
         }

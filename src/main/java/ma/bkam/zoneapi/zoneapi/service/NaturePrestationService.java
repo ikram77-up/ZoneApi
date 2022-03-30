@@ -1,7 +1,6 @@
 package ma.bkam.zoneapi.zoneapi.service;
 
 import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
-import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 
 import java.util.List;
 import java.util.Optional;

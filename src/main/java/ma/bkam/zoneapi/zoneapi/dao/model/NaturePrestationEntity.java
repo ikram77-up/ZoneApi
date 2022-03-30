@@ -1,14 +1,15 @@
 package ma.bkam.zoneapi.zoneapi.dao.model;
 
-import com.sun.istack.NotNull;
 import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Entity(name = "PRESTATION")
 public class NaturePrestationEntity extends GenericEntity{
 
-    @NotNull
+
+    @NonNull
     private String libelle;
 
     @Id
@@ -22,10 +23,7 @@ public class NaturePrestationEntity extends GenericEntity{
         return super.getId();
     }
 
-    @Override
-    public void setId(Long id) {
-        super.setId(id);
-    }
+
 
     public String getLibelle() {
         return libelle;

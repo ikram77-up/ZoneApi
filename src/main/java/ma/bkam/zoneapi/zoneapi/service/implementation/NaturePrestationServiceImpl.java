@@ -1,11 +1,9 @@
 package ma.bkam.zoneapi.zoneapi.service.implementation;
 
 import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
-import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
 import ma.bkam.zoneapi.zoneapi.dao.model.NaturePrestationEntity;
-import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
 import ma.bkam.zoneapi.zoneapi.dao.repository.NaturePrestationRepository;
 import ma.bkam.zoneapi.zoneapi.service.NaturePrestationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +34,11 @@ public class NaturePrestationServiceImpl implements NaturePrestationService {
 
     @Override
     public List<NaturePrestationDTO> getAll() {
-        List<NaturePrestationDTO> prestation=new ArrayList<NaturePrestationDTO>();
+        List<NaturePrestationDTO> prestation=new ArrayList<>();
 
-        repository.findAll().forEach(villeEntity -> {
-            prestation.add(villeEntity.convertToDto());
-        });
+        repository.findAll().forEach(villeEntity ->
+            prestation.add(villeEntity.convertToDto())
+        );
         return prestation;
     }
 
@@ -66,7 +64,7 @@ public class NaturePrestationServiceImpl implements NaturePrestationService {
 
     @Override
     public Boolean deleteById(Optional<Long> id) {
-        Optional<NaturePrestationEntity> theExisted = Optional.empty();
+        Optional<NaturePrestationEntity> theExisted;
         if (id.isPresent()) {
             theExisted = repository.findById(id.get());
         }

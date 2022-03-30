@@ -1,6 +1,5 @@
 package ma.bkam.zoneapi.zoneapi.common.dto;
 
-import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
 import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
 
 

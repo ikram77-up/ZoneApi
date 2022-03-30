@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class VilleEntity extends GenericEntity{
 
 
-    @NonNull
-    private String abrev;
+@NonNull
+private String abrev;
     @NonNull
     private String libelle;
 
@@ -26,10 +26,6 @@ public class VilleEntity extends GenericEntity{
         return super.getId();
     }
 
-    @Override
-    public void setId(Long id) {
-        super.setId(id);
-    }
 
     public String getAbrev() {
         return abrev;

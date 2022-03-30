@@ -4,7 +4,6 @@ import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
 import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
-import ma.bkam.zoneapi.zoneapi.dao.model.ZoneEntity;
 import ma.bkam.zoneapi.zoneapi.dao.repository.VilleRepository;
 import ma.bkam.zoneapi.zoneapi.service.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +32,11 @@ public class VilleServiceImpl implements VilleService {
     @Override
     public List<VilleDTO> getAll() {
 
-        List<VilleDTO> villes=new ArrayList<VilleDTO>();
+        List<VilleDTO> villes=new ArrayList<>();
 
-        villeRepository.findAll().forEach(villeEntity -> {
-            villes.add(villeEntity.convertToDto());
-        });
+        villeRepository.findAll().forEach(villeEntity ->
+            villes.add(villeEntity.convertToDto())
+        );
         return villes;
     }
 
@@ -60,7 +59,7 @@ public class VilleServiceImpl implements VilleService {
 
     @Override
     public Boolean deleteById(Optional<Long> id) {
-        Optional<VilleEntity> theExisted = Optional.empty();
+        Optional<VilleEntity> theExisted;
         if (id.isPresent()) {
         theExisted = villeRepository.findById(id.get());
     }

@@ -31,11 +31,11 @@ public class ZoneServiceImpl implements ZoneService {
     @Override
     public List<ZoneDTO> getAll() {
 
-        List<ZoneDTO> zones =new ArrayList<ZoneDTO>();
+        List<ZoneDTO> zones =new ArrayList<>();
 
-       repository.findAll().forEach(villeEntity -> {
-            zones.add(villeEntity.convertToDto());
-        });
+       repository.findAll().forEach(villeEntity ->
+            zones.add(villeEntity.convertToDto())
+        );
         return zones;
     }
 
@@ -59,7 +59,7 @@ public class ZoneServiceImpl implements ZoneService {
 
     @Override
     public Boolean deleteById(Optional<Long> id) {
-        Optional<ZoneEntity> theExisted = Optional.empty();
+        Optional<ZoneEntity> theExisted;
         if (id.isPresent()) {
             theExisted = repository.findById(id.get());
         }

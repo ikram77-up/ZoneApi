@@ -1,9 +1,8 @@
 package ma.bkam.zoneapi.zoneapi.dao.model;
 
 
-import com.sun.istack.NotNull;
-import ma.bkam.zoneapi.zoneapi.common.dto.NaturePrestationDTO;
 import ma.bkam.zoneapi.zoneapi.common.dto.PrestatireDTO;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -22,12 +21,9 @@ public class PrestataireEntity extends GenericEntity{
         return super.getId();
     }
 
-    @Override
-    public void setId(Long id) {
-        super.setId(id);
-    }
-    @NotNull
-    private String libelle;
+
+@NonNull
+private String libelle;
 
     private NaturePrestationEntity prestationEntity;
 

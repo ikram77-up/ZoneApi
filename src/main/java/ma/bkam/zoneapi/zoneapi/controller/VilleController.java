@@ -7,7 +7,6 @@ import ma.bkam.zoneapi.zoneapi.common.dto.SimpleMessageResponseModel;
 import ma.bkam.zoneapi.zoneapi.common.dto.VilleDTO;
 import ma.bkam.zoneapi.zoneapi.common.utils.MessagesCodes;
 import ma.bkam.zoneapi.zoneapi.common.utils.Utilities;
-import ma.bkam.zoneapi.zoneapi.dao.model.VilleEntity;
 import ma.bkam.zoneapi.zoneapi.service.VilleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
