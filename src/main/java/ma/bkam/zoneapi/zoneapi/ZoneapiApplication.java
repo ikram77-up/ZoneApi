@@ -11,7 +11,4 @@ public class ZoneapiApplication {
 
 		System.out.println("hello world !\n");
 	}
-
-
-
 }
