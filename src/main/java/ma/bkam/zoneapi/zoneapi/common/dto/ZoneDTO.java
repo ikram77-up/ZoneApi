@@ -44,7 +44,9 @@ public class ZoneDTO extends GenericDTO {
         zone.setId(this.id);
         zone.setAbrev(this.abrev);
         zone.setLibelle(this.libelle);
-        zone.setVilles(Utilities.isNullOrEmpty(this.villes)? new ArrayList<>(): this.villes.stream().map(VilleDTO::convertToEntity).collect(Collectors.toList()));
+        zone.setVilles(Utilities.isNullOrEmpty(this.villes)? new ArrayList<>():
+                this.villes.stream()
+                        .map(VilleDTO::convertToEntity).collect(Collectors.toList()));
         return zone;
 
     }

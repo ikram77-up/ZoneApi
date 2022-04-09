@@ -73,7 +73,9 @@ public class ZoneEntity extends GenericEntity{
        zone.setId(this.id);
        zone.setAbrev(this.abrev);
        zone.setLibelle(this.libelle);
-        zone.setVilles(Utilities.isNullOrEmpty(this.villes)? new ArrayList<>() : this.villes.stream().map(VilleEntity::convertToDto).collect(Collectors.toList()));
+        zone.setVilles(Utilities.isNullOrEmpty(this.villes)?
+                new ArrayList<>() : this.villes.stream()
+                .map(VilleEntity::convertToDto).collect(Collectors.toList()));
         return zone;
     }
 
